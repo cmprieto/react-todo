@@ -2,8 +2,13 @@ import TodoContainerListComponent from "./TodoContainerListComponent";
 import NewTodo from "./NewTodo";
 import { useUserContext } from "../providers/UserProvider";
 import BottomList from "./BottomList";
+import { useEffect } from "react";
 const TodoContainerList = () => {
   const { todoList } = useUserContext();
+
+useEffect(()=>{
+ // alert('refresh');
+},[todoList]);
 
   return (
     <div className="todolistcontainer">

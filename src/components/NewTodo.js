@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useUserContext } from "../providers/UserProvider";
 
 const NewTodo = () => {
   const { todoList, setTodoList } = useUserContext();
   const [newTodo, setNewTodo] = useState("");
+  const newToDoText = useRef(null);
 
   const handleChangeNewTodo = (e) => {
     setNewTodo(e.target.value);
@@ -11,9 +12,14 @@ const NewTodo = () => {
 
   const handleNewTodo = (e) => {
     const long = todoList.length;
-   
-    setTodoList([...todoList, { task: newTodo, completed: false, id: long }]);
+    const newTodo2 = newToDoText.current.value;
+    newTodo2 &&
+      setTodoList([
+        ...todoList,
+        { task: newTodo2, completed: false, id: long },
+      ]);
     e.preventDefault();
+    newToDoText.current.value = "";
   };
 
   return (
@@ -25,6 +31,7 @@ const NewTodo = () => {
           placeholder="new todo"
           id="newtodo"
           className="newtodo--input"
+          ref={newToDoText}
         ></input>
       </form>
     </div>
