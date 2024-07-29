@@ -10,8 +10,9 @@ const NewTodo = () => {
   };
 
   const handleNewTodo = (e) => {
-
-    setTodoList([newTodo, ...todoList]);
+    const long = todoList.length;
+   
+    setTodoList([...todoList, { task: newTodo, completed: false, id: long }]);
     e.preventDefault();
   };
 
@@ -23,6 +24,7 @@ const NewTodo = () => {
           onChange={handleChangeNewTodo}
           placeholder="new todo"
           id="newtodo"
+          className="newtodo--input"
         ></input>
       </form>
     </div>
