@@ -1,0 +1,2 @@
+*{box-sizing:border-box;font-size:16px;margin:0;padding:0}.todocontainer{align-items:center;border:1px solid orange;display:flex;flex-direction:column;height:800px;justify-content:center;width:800px}.todolistcontainer{min-width:300px}.newtodo,.todocomponentcontainer,.todolistcontainer{align-items:center;border:1px solid red;display:flex;flex-direction:column;justify-content:center;margin:1rem}.newtodo,.todocomponentcontainer{font-family:Comic Neue,cursive;font-style:normal;font-weight:700;height:auto;padding:.5rem;width:500px}
+/*# sourceMappingURL=main.88a0a00c.css.map*/

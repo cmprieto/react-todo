@@ -1,0 +1,13 @@
+.todolistcontainer {
+    @include flex-center;
+    flex-direction: column;
+    min-width: 450px;
+    margin: 1rem;
+    border: 2px solid #993636;
+    border-radius: 5px;
+
+    &--form {
+        cursor: pointer;
+
+    }
+}

@@ -1,0 +1,44 @@
+.todocomponentcontainer {
+    @include d-flex(space-around, center);
+    flex-direction: row;
+    width: 540px;
+    height: 64px;
+    padding: 0.5rem;
+    border-top: 1px solid #E3E4F1;
+    border-bottom: 1px solid #E3E4F1;
+    background-color: #f0f0f0;
+
+    &--largeradio {
+        transform: scale(1.7);
+    }
+
+    &--text {
+        font-size: 1rem;
+        font-family: "Comic Neue", cursive;
+        font-weight: 700;
+        font-style: normal;
+        color: #494C6B;
+        width: 70%;
+    }
+
+    &--cross {
+        visibility: hidden;
+        width: 18px;
+    }
+
+    &:hover {
+        background-color: #cfa5a5;
+
+        .todocomponentcontainer--cross {
+            visibility: visible;
+        }
+
+
+
+
+    }
+}
+
+.newtodo {
+    @extend .todocomponentcontainer;
+}
