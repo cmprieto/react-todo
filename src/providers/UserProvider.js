@@ -8,31 +8,24 @@ const UserProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([]);
   const [todoActivedList, setTodoActivedList] = useState([]);
   const [todoCompletedList, setTodoCompletedList] = useState([]);
+  const [index, setIndex] = useState(0);
 
   //METODOS
-  //CAMBIAR ESTADOS CUANDO TAREA COMPLETED(checked) O NO
-  const handleCompleted = (id, e) => {
-    console.log("e", e);
+
+  //CAMBIAR ESTADOS CUANDO TAREA COMPLETED(checked) O unchecked
+  const handleCompleted = (id, check) => {
+    console.log("e", check);
     console.log("id", id);
-    //BUSCAR Y MODIFICAR UN ELEMENTO DEL ARRAY
+    //BUSCAR Y MODIFICAR UN ELEMENTO DEL ARRAY estado checked
     // In this refactored version, we create a new copy of the todoList state using the map() method, and update the completed property of the matching item using the e.target.checked value.
     const updatedTodoList = todoList.map((item) => {
       if (item.id === id) {
-        return { ...item, completed: e };
+        return { ...item, completed: check };
       }
       return item;
     });
     console.log("updatedTodoList", updatedTodoList);
     setTodoList(updatedTodoList);
-
-    // BUSCARLO Y LUEGO CAMBIAR CON METODOS JS
-    const found = todoList.find((lista) => lista.id === id);
-    if (found) {
-      found.completed = !e; //ERRORES CAMBIA DIRECTAMENTE PROPIEDAD
-    } else {
-      console.log("Objeto no encontrado");
-    }
-    console.log("found", found);
   };
 
   //BORRAR 1 ITEM
@@ -40,42 +33,40 @@ const UserProvider = ({ children }) => {
     const newTodoList = todoList.filter((item) => item.id !== id);
     console.log("list", newTodoList);
     setTodoList(newTodoList);
-    //setTodoList(list);
+    return null;
   };
-
+  // MOSTRAR ACTIVAS
   const handleActive = () => {
     const newActiveList = todoList.filter((item) => item.completed === false);
     setTodoActivedList(newActiveList);
+    setIndex(1);
     return newActiveList.length;
   };
 
+  const getNumberItemsCompleted = () => {
+    const newActiveList = todoList.filter((item) => item.completed === false);
+    setTodoActivedList(newActiveList);
+  };
+
+  // MOSTRAR COMPLETADAS
   const handleCompletedList = () => {
     const newCompletedList = todoList.filter((item) => item.completed === true);
     setTodoCompletedList(newCompletedList);
+    setIndex(2);
+    return null;
   };
-  /* 
-    const actived = todoList.map((item) => {
-      if (item.completed === false) {
-        return { ...item };
-      } else {
-        return console.log('no completed')
-      }
-      /* return item; */
-  /*  });
-    alert("hola");
-    setTodoActivedList(actived);
-  }; */
 
-  /*  setTodoActivedList(actived);
-   */
-  /* 
-const updatedTodoList = todoList.map((item) => {
-  if (item.id === id) {
-    return { ...item, completed: e };
-  }
-  return item;
-});
- */
+  // BORRAR TODAS TAREAS COMPLETADAS
+  const handleClearCompleted = () => {
+    const isAnyItemCompleted = todoList.some((item) => item.completed);
+    //alert(isAnyItemCompleted);
+    console.log("todoActivedList", todoActivedList);
+    if (isAnyItemCompleted === true) {
+      setTodoList((prevState) => {
+        return prevState.filter((item) => item.completed === false);
+      });
+    }
+  };
   return (
     <AppContext.Provider
       value={{
@@ -86,7 +77,15 @@ const updatedTodoList = todoList.map((item) => {
         handleCompleted,
         handleDelete,
         handleActive,
-        handleCompletedList,todoActivedList, setTodoActivedList
+        handleCompletedList,
+        todoActivedList,
+        setTodoActivedList,
+        handleClearCompleted,
+        index,
+        setIndex,
+        getNumberItemsCompleted,
+        todoCompletedList,
+        setTodoCompletedList,
       }}
     >
       {children}

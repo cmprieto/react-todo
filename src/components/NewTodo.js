@@ -3,23 +3,25 @@ import { useUserContext } from "../providers/UserProvider";
 
 const NewTodo = () => {
   const { todoList, setTodoList } = useUserContext();
-  const [newTodo, setNewTodo] = useState("");
+  const [numberId, setNumberId] = useState(0);
   const newToDoText = useRef(null);
 
-  const handleChangeNewTodo = (e) => {
-    setNewTodo(e.target.value);
+
+
+  const actualizarId = () => {
+    setNumberId((prevState) => {
+      const newState = prevState + 1;
+      return newState;
+    });
   };
 
   const handleNewTodo = (e) => {
-    const long = todoList.length;
     const newTodo2 = newToDoText.current.value;
-    newTodo2 &&
-      setTodoList([
-        ...todoList,
-        { task: newTodo2, completed: false, id: long },
-      ]);
+    numberId>=0 &&
+      setTodoList([...todoList, { task: newTodo2, completed: false, id: numberId }]);
     e.preventDefault();
-    newToDoText.current.value = "";
+    actualizarId();
+    newToDoText.current.value = ""; //BORRA FORMULARIO AL ENTRAR VALOR
   };
 
   return (
@@ -27,7 +29,6 @@ const NewTodo = () => {
       <form onSubmit={handleNewTodo} id="buscador" name="buscador">
         <input
           type="text"
-          onChange={handleChangeNewTodo}
           placeholder="new todo"
           id="newtodo"
           className="newtodo--input"

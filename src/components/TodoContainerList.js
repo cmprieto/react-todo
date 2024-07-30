@@ -4,25 +4,44 @@ import { useUserContext } from "../providers/UserProvider";
 import BottomList from "./BottomList";
 import { useEffect } from "react";
 const TodoContainerList = () => {
-  const { todoList } = useUserContext();
+  const { todoList, index, todoActivedList, todoCompletedList } =
+    useUserContext();
+  const selectedList = ["todoList", "todoActivedList", "todoCompletedList"];
+  const lista = selectedList[index];
+  console.log(lista);
 
-useEffect(()=>{
- // alert('refresh');
-},[todoList]);
+  const list =
+    selectedList[index] === "todoList"
+      ? todoList
+      : selectedList[index] === "todoActivedList"
+      ? todoActivedList
+      : selectedList[index] === "todoCompletedList"
+      ? todoCompletedList
+      : alert('no coincide');
+
+
+  console.log(list, "list");
+  /* `${selectedList[index]}` */
+  useEffect(() => {
+    /*  console.log(selectedList[0]) ; */
+  }, [list]);
 
   return (
     <div className="todolistcontainer">
       <NewTodo />
-       <form className="todolistcontainer--form">
-      {todoList.map((todoitem, i) => {
-        return (
-          <div key={i} className="todocomponentcontainer">
-            <TodoContainerListComponent itemtodo={todoitem} />
-          </div>
-        );
-      })}
-      </form> 
-      <BottomList/>
+      <form className="todolistcontainer--form">
+        {/*         {alert(`${lista}`)} */}
+        {/*  //NO ME FUNCIONA EN EL MAP Y NO SE PQ */}
+
+        {list.map((todoitem) => {
+          return (
+            <div key={todoitem.id} className="todocomponentcontainer">
+              <TodoContainerListComponent itemtodo={todoitem} />
+            </div>
+          );
+        })}
+      </form>
+      <BottomList />
     </div>
   );
 };

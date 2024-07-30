@@ -2,14 +2,22 @@ import { useEffect } from "react";
 import { useUserContext } from "../providers/UserProvider";
 
 const BottomList = () => {
-  const { handleActive, handleCompletedList, todoActivedList, todoList } =
-    useUserContext();
+  const {
+    handleActive,
+    handleCompletedList,
+    todoActivedList,
+    todoList,
+    handleClearCompleted,
+    setIndex,getNumberItemsCompleted
+  } = useUserContext();
   let itemleft = 0;
   const handleItemLeft = () => {
     return (itemleft = todoActivedList.length);
   };
-  useEffect(() => { //EVITAMOS BUCLE Y NECESITAMOS ACTIVAR LA FUNCION PARA SACAR VALOR DE ITEMS PDTES
-    handleActive();
+  useEffect(() => {
+    //EVITAMOS BUCLE Y NECESITAMOS ACTIVAR LA FUNCION PARA SACAR VALOR DE ITEMS PDTES
+    //   handleActive();  ->>>no sale items pdtes si desactivamos
+    getNumberItemsCompleted();
   }, [todoList]);
 
   return (
@@ -18,7 +26,12 @@ const BottomList = () => {
         {handleItemLeft()} items left
       </p>
       <div className="bottomlist--center">
-        <p className="bottomlist--center--all josefin--400">All</p>
+        <p
+          className="bottomlist--center--all josefin--400"
+          onClick={() => setIndex(0)}
+        >
+          All
+        </p>
         <p
           className="bottomlist--center--active josefin--400"
           onClick={handleActive}
@@ -33,7 +46,12 @@ const BottomList = () => {
         </p>
       </div>
 
-      <p className="bottomlist--clear josefin--400">Clear completed</p>
+      <p
+        className="bottomlist--clear josefin--400 "
+        onClick={handleClearCompleted}
+      >
+        Clear completed
+      </p>
     </div>
   );
 };
