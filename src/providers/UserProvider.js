@@ -6,6 +6,8 @@ export const useUserContext = () => useContext(AppContext);
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState("Rafa");
   const [todoList, setTodoList] = useState([]);
+  const [todoActivedList, setTodoActivedList] = useState([]);
+  const [todoCompletedList, setTodoCompletedList] = useState([]);
 
   //METODOS
   //CAMBIAR ESTADOS CUANDO TAREA COMPLETED(checked) O NO
@@ -20,7 +22,7 @@ const UserProvider = ({ children }) => {
       }
       return item;
     });
-    console.log('updatedTodoList',updatedTodoList)
+    console.log("updatedTodoList", updatedTodoList);
     setTodoList(updatedTodoList);
 
     // BUSCARLO Y LUEGO CAMBIAR CON METODOS JS
@@ -40,6 +42,40 @@ const UserProvider = ({ children }) => {
     setTodoList(newTodoList);
     //setTodoList(list);
   };
+
+  const handleActive = () => {
+    const newActiveList = todoList.filter((item) => item.completed === false);
+    setTodoActivedList(newActiveList);
+    return newActiveList.length;
+  };
+
+  const handleCompletedList = () => {
+    const newCompletedList = todoList.filter((item) => item.completed === true);
+    setTodoCompletedList(newCompletedList);
+  };
+  /* 
+    const actived = todoList.map((item) => {
+      if (item.completed === false) {
+        return { ...item };
+      } else {
+        return console.log('no completed')
+      }
+      /* return item; */
+  /*  });
+    alert("hola");
+    setTodoActivedList(actived);
+  }; */
+
+  /*  setTodoActivedList(actived);
+   */
+  /* 
+const updatedTodoList = todoList.map((item) => {
+  if (item.id === id) {
+    return { ...item, completed: e };
+  }
+  return item;
+});
+ */
   return (
     <AppContext.Provider
       value={{
@@ -49,6 +85,8 @@ const UserProvider = ({ children }) => {
         setTodoList,
         handleCompleted,
         handleDelete,
+        handleActive,
+        handleCompletedList,todoActivedList, setTodoActivedList
       }}
     >
       {children}

@@ -1,0 +1,34 @@
+@media only screen and (max-width: 600px) {
+
+
+
+    .todocontainer {
+
+
+        width: 100%;
+    }
+
+    .todolistcontainer {
+        width: 90%;
+
+        &--form {
+            width: 100%;
+        }
+    }
+
+
+    .todocomponentcontainer {
+        width: 100%;
+    }
+
+    .newtodo {
+        width: 100%;
+    }
+
+
+
+
+
+
+
+}

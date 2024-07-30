@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import TodoContainer from './components/TodoContainer'
 
 
 const App = () => {
 
   return (
-    <div><TodoContainer/></div>
+    <Fragment><TodoContainer/></Fragment>
   )
 }
 
-export default App
+export default App;
