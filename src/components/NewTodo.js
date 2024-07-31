@@ -26,7 +26,7 @@ const NewTodo = () => {
 
   return (
     <div className="newtodo">
-      <form onSubmit={handleNewTodo} id="buscador" name="buscador">
+      <form onSubmit={handleNewTodo} className="newtodo--form" id="buscador" name="buscador">
         <input
           type="text"
           placeholder="new todo"

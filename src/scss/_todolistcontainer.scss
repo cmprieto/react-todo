@@ -1,7 +1,7 @@
 .todolistcontainer {
     @include flex-center;
     flex-direction: column;
-    min-width: 450px;
+    min-width: 540px;
     margin: 1rem;
     border: 2px solid #993636;
     border-radius: 5px;
@@ -10,4 +10,7 @@
         cursor: pointer;
 
     }
+}
+.boxes{
+    @extend .todolistcontainer;
 }

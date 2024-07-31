@@ -32,7 +32,8 @@
         }
 
         &:checked {
-         //   background: url("../assets/img/icon-check.svg") no-repeat 0 0;
+
+            //   background: url("../assets/img/icon-check.svg") no-repeat 0 0;
             &::before {
                 transform: scale(1);
             }
@@ -46,11 +47,11 @@
         font-style: normal;
         color: $VeryDarkGrayishBlue;
         width: 70%;
-        &--tachado{
-            @extend .todocomponentcontainer--text;
-            text-decoration:line-through;
-            color:$LightGrayishBlue;
 
+        &--tachado {
+            @extend .todocomponentcontainer--text;
+            text-decoration: line-through;
+            color: $LightGrayishBlue;
         }
     }
 
@@ -65,18 +66,22 @@
         .todocomponentcontainer--cross {
             visibility: visible;
         }
-
-
-
-
     }
 }
 
 .newtodo {
     @extend .todocomponentcontainer;
+    margin-bottom: 1rem;
+    border: 0px;
+    border-radius: 5px;
+
+    &--form {
+        width: 100%
+    }
 
     &--input {
         font-family: "Josefin Sans";
         padding: 0.5rem;
+        width: 100%;
     }
 }
