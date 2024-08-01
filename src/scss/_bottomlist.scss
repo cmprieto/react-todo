@@ -1,12 +1,21 @@
+.bottomContainer {
+    width: 100%;
+    background-color: white;
+    border-radius: 0px 0px 5px 5px;
+}
+
 .bottomlist {
     @include d-flex(space-between, center);
     flex-direction: row;
     width: 100%;
     height: 50px;
     padding: 0 1rem 0 1rem;
+    max-width: 540px;
+    border-radius: 0px 0px 5px 5px;
 
     &>p {
         font-size: 0.8rem;
+        color: $DarkGrayishBlue;
     }
 
     &--center {
@@ -17,6 +26,15 @@
         &>p {
             font-size: 0.8rem;
             cursor: pointer;
+            color: $DarkGrayishBlue;
+
+            &:hover {
+                color: black;
+            }
+        }
+
+        &--mobile {
+            display: none;
         }
     }
 

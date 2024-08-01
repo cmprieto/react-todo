@@ -17,7 +17,7 @@ const NewTodo = () => {
 
   const handleNewTodo = (e) => {
     const newTodo2 = newToDoText.current.value;
-    numberId>=0 &&
+    (numberId>=0 && newTodo2) &&
       setTodoList([...todoList, { task: newTodo2, completed: false, id: numberId }]);
     e.preventDefault();
     actualizarId();
@@ -29,7 +29,7 @@ const NewTodo = () => {
       <form onSubmit={handleNewTodo} className="newtodo--form" id="buscador" name="buscador">
         <input
           type="text"
-          placeholder="new todo"
+          placeholder="create a new todo"
           id="newtodo"
           className="newtodo--input"
           ref={newToDoText}

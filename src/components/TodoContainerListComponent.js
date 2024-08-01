@@ -17,7 +17,7 @@ const TodoContainerListComponent = (
   }; */
 
   return (
-    <div ref={ref} {...draggableProps} {...dragHandleProps} className="todocomponentcontainer">
+    <div ref={ref} {...draggableProps} {...dragHandleProps}  className="todocomponentcontainer">
       <input
         type="checkbox"
         className="todocomponentcontainer--largeradio"

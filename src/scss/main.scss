@@ -4,11 +4,12 @@
 @import "./reset/vars";
 @import "./reset/typography";
 
-
+@import "layout";
 @import "todocontainer";
 @import "todolistcontainer";
 @import "todocomponentcontainer";
 @import "bottomlist";
+@import "footer";
 
 
 /*

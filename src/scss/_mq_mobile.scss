@@ -1,15 +1,28 @@
 @media only screen and (max-width: 600px) {
+    .App {
+        background-image: url('../assets/img/bg-mobile-light.jpg');
+        background-size: contain;
 
-
+    }
 
     .todocontainer {
-
-
         width: 100%;
+        grid-template-rows: 0.3fr 0.1fr 2fr 0.1fr;
+
+        &--h1 {
+            width: 90%;
+        }
+    }
+
+    .cont {
+        width: 90%;
+        min-width: 300px;
     }
 
     .todolistcontainer {
-        width: 90%;
+        width: 100%;
+        min-width: 300px;
+        box-shadow: none;
 
         &--form {
             width: 100%;
@@ -22,10 +35,56 @@
     }
 
     .newtodo {
+        width: 88%;
+        height: auto;
+    }
+
+    .bottomContainer {
         width: 100%;
     }
 
+    .bottomlist {
+        padding: 0px;
+        box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
+            0px 5px 4px rgba(3, 7, 18, 0.03),
+            0px 12px 9px rgba(3, 7, 18, 0.05),
+            0px 20px 15px rgba(3, 7, 18, 0.06),
+            0px 32px 24px rgba(3, 7, 18, 0.08);
 
+        &>p {
+            font-size: 0.9rem;
+        }
+
+        &--center {
+            min-width: 45%;
+            display: none;
+
+            &--mobile {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 1rem;
+                padding: 1rem;
+                border-radius: 5px;
+                background-color: white;
+                box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
+                    0px 5px 4px rgba(3, 7, 18, 0.03),
+                    0px 12px 9px rgba(3, 7, 18, 0.05),
+                    0px 20px 15px rgba(3, 7, 18, 0.06),
+                    0px 32px 24px rgba(3, 7, 18, 0.08);
+
+                &>p {
+                    font-size: 0.9rem;
+                    cursor: pointer;
+                    color: $DarkGrayishBlue;
+
+                    &:hover {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
 
 
 

@@ -1,0 +1,21 @@
+.App {
+    background-image: url('../assets/img/bg-desktop-light.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+    background-color: $VeryLightGray;
+}
+
+.todocontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.1fr 2fr 0.1fr;
+    grid-template-areas:
+        "title title"
+        "newtodo newtodo"
+        "main main"
+   
+        "footer footer";
+
+}

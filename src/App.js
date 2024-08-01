@@ -5,7 +5,7 @@ import TodoContainer from './components/TodoContainer'
 const App = () => {
 
   return (
-    <Fragment><TodoContainer/></Fragment>
+    <div className='App'><TodoContainer/></div>
   )
 }
 

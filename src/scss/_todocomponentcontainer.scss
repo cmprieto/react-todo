@@ -11,7 +11,7 @@
     &--largeradio {
         // transform: scale(1.7);
         appearance: none;
-        font: inheerit;
+        font: inherit;
         width: 1.15em;
         height: 1.15em;
         border: 0.15em solid currentColor;
@@ -20,6 +20,7 @@
         transform: translateY(-0.075em);
         display: grid;
         place-content: center;
+        box-shadow: 5px 5px 34px 1px #bababa;
 
         &::before {
             content: "";
@@ -71,17 +72,39 @@
 
 .newtodo {
     @extend .todocomponentcontainer;
+    grid-area: newtodo;
+    z-index: 1;
     margin-bottom: 1rem;
     border: 0px;
     border-radius: 5px;
+    box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
+        0px 5px 4px rgba(3, 7, 18, 0.03),
+        0px 12px 9px rgba(3, 7, 18, 0.05),
+        0px 20px 15px rgba(3, 7, 18, 0.06),
+        0px 32px 24px rgba(3, 7, 18, 0.08);
 
     &--form {
-        width: 100%
+        width: 100%;
+
     }
 
     &--input {
         font-family: "Josefin Sans";
         padding: 0.5rem;
         width: 100%;
+        border: none;
+        border-radius: 5px;
+
+        /*   box-shadow: 1px 1px 1px rgba(3, 7, 18, 0.02),
+            0px 5px 4px rgba(3, 7, 18, 0.03),
+            0px 12px 9px rgba(3, 7, 18, 0.05),
+            0px 20px 15px rgba(3, 7, 18, 0.06),
+            0px 32px 24px rgba(3, 7, 18, 0.08);
+ */
+        &:focus,
+        &:focus-visible {
+            border: 1px solid $VeryLightGrayishBlue;
+            outline: none;
+        }
     }
 }

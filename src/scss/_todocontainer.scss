@@ -1,8 +1,21 @@
 .todocontainer {
-    @include flex-center;
-    flex-direction: column;
-    width: 100%;
-    height: 800px;
-    border: 1px solid orange;
+  //   @include flex-center;
+  // flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
 
+
+  &--h1 {
+    grid-area: title;
+    margin: 0 auto;
+    width: 540px;
+    height: 3rem;
+    margin-top: 3rem;
+
+    &>h1 {
+      font-size: 2rem;
+      color: $VeryLightGray;
+      text-transform: uppercase;
+    }
+  }
 }
