@@ -1,17 +1,25 @@
 import TodoContainerListComponent from "./TodoContainerListComponent";
-import NewTodo from "./NewTodo";
 import { useUserContext } from "../providers/UserProvider";
 import BottomList from "./BottomList";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const TodoContainerList = () => {
-  const { todoList, index, todoActivedList, todoCompletedList, setTodoList } =
-    useUserContext();
+  const {
+    todoList,
+    index,
+    todoActivedList,
+    todoCompletedList,
+    setTodoList,
+    idListFirebase,
+    leerFirebase,
+  } = useUserContext();
+
   const selectedList = ["todoList", "todoActivedList", "todoCompletedList"];
-  const [items, setItems] = useState();
+  //  const [items, setItems] = useState();
   const lista = selectedList[index];
   console.log(lista);
+  const [inicio, setInicio] = useState();
 
   const list =
     selectedList[index] === "todoList"
@@ -22,7 +30,7 @@ const TodoContainerList = () => {
       ? todoCompletedList
       : alert("no coincide");
 
-  //CONFIGRACION DRANG AND DROP
+  //CONFIGURACION DRANG AND DROP
 
   //___________________________________________________
 
@@ -45,7 +53,6 @@ const TodoContainerList = () => {
     );
     setTodoList(itms); // Esto actualiza el estado de los items para que se pinten reordenados en pantalla
     // OJO SOLO VA BIEN CON LA LISTA DE TODOS LOS ELEMENTOS-> HAY QUE ANALIZAR QUE HAY QUE ACTUALIZAR CUANDO HAY FILTROS
-
     // updateItems(items); //Esto actualiza el valor en firebase
   };
 
@@ -57,7 +64,10 @@ const TodoContainerList = () => {
 
   console.log(list, "list");
   /* `${selectedList[index]}` */
-  useEffect(() => {}, [list]);
+
+  useEffect(() => {
+  //  idListFirebase && leerFirebase();
+  }, [list]);
 
   return (
     <div className="cont">
@@ -95,9 +105,7 @@ const TodoContainerList = () => {
         </DragDropContext>
         <BottomList />
       </div>
-      <p className=" josefin--700">
-        Drag and drop to reorder list
-      </p>
+      <p className=" josefin--700">Drag and drop to reorder list</p>
     </div>
   );
 };

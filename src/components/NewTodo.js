@@ -1,12 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useUserContext } from "../providers/UserProvider";
 
 const NewTodo = () => {
-  const { todoList, setTodoList } = useUserContext();
-  const [numberId, setNumberId] = useState(0);
+  const { todoList, setTodoList, subiraFirebase, numberId, setNumberId } =
+    useUserContext();
   const newToDoText = useRef(null);
 
-
+  useEffect(() => {
+    newToDoText.current.focus();
+  }, [todoList]);
 
   const actualizarId = () => {
     setNumberId((prevState) => {
@@ -16,17 +18,33 @@ const NewTodo = () => {
   };
 
   const handleNewTodo = (e) => {
-    const newTodo2 = newToDoText.current.value;
-    (numberId>=0 && newTodo2) &&
-      setTodoList([...todoList, { task: newTodo2, completed: false, id: numberId }]);
+    const newTask = newToDoText.current.value;
+    console.log('numberId',numberId);
+    numberId >= 0 &&
+      newTask &&
+      setTodoList((prevState) => {
+        const newState = [
+          ...todoList,
+          { task: newTask, completed: false, id: numberId },
+        ];
+        return newState;
+      });
+
+    //  (numberId >= 0 && newTask )&& updateItem(idListFirebase,{ ...todoList, task: newTask, completed: false, id: numberId })
     e.preventDefault();
     actualizarId();
+    subiraFirebase();
     newToDoText.current.value = ""; //BORRA FORMULARIO AL ENTRAR VALOR
   };
 
   return (
     <div className="newtodo">
-      <form onSubmit={handleNewTodo} className="newtodo--form" id="buscador" name="buscador">
+      <form
+        onSubmit={handleNewTodo}
+        className="newtodo--form"
+        id="buscador"
+        name="buscador"
+      >
         <input
           type="text"
           placeholder="create a new todo"
