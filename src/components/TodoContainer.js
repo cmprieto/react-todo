@@ -2,13 +2,11 @@ import TodoContainerList from "./TodoContainerList";
 import NewTodo from "./NewTodo";
 import Footer from "./Footer";
 import { useUserContext } from "../providers/UserProvider";
+import Login from "./Login";
 
 
 const TodoContainer = () => {
-  const {
-    leerFirebase,
-    setIdListFirebase,
-  } = useUserContext();
+  const { leerFirebase, setIdListFirebase, user, setUser } = useUserContext();
 
   const createUser = () => {
     setIdListFirebase((prevState) => {
@@ -33,7 +31,7 @@ const TodoContainer = () => {
       alert("error AÑADIENDO ID A ESTADO");
     }
   }; */
-/*   useEffect(() => {
+  /*   useEffect(() => {
     //LEER VALORES EN FIREBASE
     //   idListFirebase && leerFirebase();
   }, [todoList]); */
@@ -42,6 +40,7 @@ const TodoContainer = () => {
       <div className="todocontainer--h1">
         <h1 className="josefin--700">To Do List</h1>
         <button onClick={createUser}>Create UserList</button>
+        {!user ? <Login /> : <div><p>{user.displayName}</p></div>}
       </div>
       <NewTodo />
       <TodoContainerList />

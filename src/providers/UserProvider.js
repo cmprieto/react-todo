@@ -75,6 +75,7 @@ const UserProvider = ({ children }) => {
       });
     }
   };
+// FIREBASE
 
   //METODO COSECHA PROPIA. RECIBE DATOS FORMULARIO Y LOS LLEVA A BBDD
 
@@ -92,7 +93,7 @@ const UserProvider = ({ children }) => {
       todoCompletedList,
       idListFirebase,
     };
-    updateItem(idListFirebase, Listasw_ID);
+    updateItem(idListFirebase, Listasw_ID);   //actualizo valor de las 3 listas con id del doc
   };
 
   const leerFirebase = async (idListFirebase) => {
@@ -100,55 +101,27 @@ const UserProvider = ({ children }) => {
       const valores = await getToDoListById(idListFirebase);
       console.log("valores", valores);
       setListsFirebase(valores); //FORZAR LISTA DE TASK SEA LA DE FIREBASE
-      console.log("ahoraaaaaaaaaaaaaaa");
       setTodoList((prevState) => {
         const newState = valores.todoList;
-        // Hacer algo con el nuevo estado aquí si es necesario
-        MaxValueId(newState);
+                                  // Hacer algo con el nuevo estado aquí si es necesario
+        MaxValueId(newState);     //reviso valor máximo del id del array para q las nuevas task el id sea mayor
         console.log("New State:", newState);
         return newState;
       });
     } catch (error) {
       console.log("Error fetching todo list:", error);
     }
-    MaxValueId();
   };
 
   const MaxValueId = (newState) => {
-    //console.log('newStateMaximus',newState);
     let maxId = 0;
     //  alert("maximusssssssssssss"); //BUSCAR VALOR MAX ID EXISTENTE EN FIREBASE
-    // const maxId = todoList.reduce((max, item) => ((item.id) > (max) ? (item.id) : (max), todoList[0].id));
     newState &&
-      (maxId = newState.reduce(
-        (max, item) => Math.max(max, item.id),
-        newState[0].id
-      ));
-    /*    newState.length > 0
-        ? newState.reduce((max, item) => Math.max(max, item.id), newState[0].id)
-        : null; */
+      (maxId = newState.reduce((max, item) => Math.max(max, item.id),newState[0].id));
     console.log("el id max es", maxId);
-    // const res = maxId;
     setNumberId(maxId + 1); //ACTUALIZAR EL VALOR MAXIMO
   };
 
-  /*
-
-  const subiraFirebase = () => {
-    const precioTotal = totalPrice();
-    const datosPedido = {
-      carrito,
-      customer,
-      precioTotal,
-      date: serverTimestamp(),
-    };
- */
-
-  //ENVIAR DATOS A FIRESTORE
-  /*   const colRef = collection(db, "todo");
-    const data = addDoc(colRef, datosPedido).then((res) =>   */ ///OJOOOOOO datosPEdido??
-  /*       setUser(res.id)
-    );  */ // addDoc -> ID DE PEDIDO
 
   return (
     <AppContext.Provider

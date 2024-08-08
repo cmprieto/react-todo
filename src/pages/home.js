@@ -1,9 +1,14 @@
-import React from 'react'
+import { Fragment } from "react";
+import TodoContainer from "../components/TodoContainer";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
-const home = () => {
+const Home = () => {
   return (
-    <div className='container'>home</div>
-  )
-}
+    <Fragment>
+      <TodoContainer />
+    </Fragment>
+  );
+};
 
-export default home
+/*  export default withAuthenticationRequired(Home);  */
+export default Home;
