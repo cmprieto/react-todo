@@ -1,8 +1,8 @@
 import TodoContainerListComponent from "./TodoContainerListComponent";
 import { useUserContext } from "../providers/UserProvider";
 import BottomList from "./BottomList";
-import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useEffect } from "react";
 
 const TodoContainerList = () => {
   const {
@@ -12,14 +12,19 @@ const TodoContainerList = () => {
     todoCompletedList,
     setTodoList,
     idListFirebase,
+    idUserGoogle,
     leerFirebase,
   } = useUserContext();
 
   const selectedList = ["todoList", "todoActivedList", "todoCompletedList"];
-  //  const [items, setItems] = useState();
+
   const lista = selectedList[index];
-  console.log(lista);
-  const [inicio, setInicio] = useState();
+  console.log(
+    'nombre formato string de lista q se muestra x pantalla de las 3:todoList", "todoActivedList", "todoCompletedList"',
+    lista
+  );
+
+  //DEFINE QUE LISTA FILTRADA SE MUESTRA X PANTALLA
 
   const list =
     selectedList[index] === "todoList"
@@ -62,12 +67,21 @@ const TodoContainerList = () => {
     console.log("drag end");
   };
 
-  console.log(list, "list");
+  console.log(
+    "corresponde a list q se muestra x pantalla, todolist, completed o active: formato array de objetos:",
+    list
+  );
   /* `${selectedList[index]}` */
 
   useEffect(() => {
-  //  idListFirebase && leerFirebase();
-  }, [list]);
+    //LEER VALORES EN FIREBASE
+    alert("LEER VALORES EN FIREBASE si existe idListFirebase");
+    idListFirebase && leerFirebase(idListFirebase);
+    /*  idListFirebase && idUserGoogle&&userHasListsFirebase.length===0 //ME REPITE Y X2 PQ ARRAY NO UPDATED
+      ? creaListaFirebaseGoogle()
+      : alert("faltan datos para asociar id de google a lista en FB");
+      alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES??"); */
+  }, [idListFirebase]);
 
   return (
     <div className="cont">
@@ -77,26 +91,27 @@ const TodoContainerList = () => {
             <Droppable droppableId="droppable" direction="vertical">
               {(provided) => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {list.map((todoitem, index) => {
-                    return (
-                      <Draggable
-                        index={index}
-                        draggableId={todoitem.id.toString()}
-                        key={todoitem.id}
-                        /* className="todocomponentcontainer" */
-                      >
-                        {(provided) => (
-                          <TodoContainerListComponent
-                            itemtodo={todoitem}
-                            ref={provided.innerRef}
-                            draggableProps={provided.draggableProps}
-                            dragHandleProps={provided.dragHandleProps}
-                            key={todoitem.id}
-                          />
-                        )}
-                      </Draggable>
-                    );
-                  })}
+                  {list &&
+                    list.map((todoitem, index) => {
+                      return (
+                        <Draggable
+                          index={index}
+                          draggableId={todoitem.id.toString()}
+                          key={todoitem.id}
+                          /* className="todocomponentcontainer" */
+                        >
+                          {(provided) => (
+                            <TodoContainerListComponent
+                              itemtodo={todoitem}
+                              ref={provided.innerRef}
+                              draggableProps={provided.draggableProps}
+                              dragHandleProps={provided.dragHandleProps}
+                              key={todoitem.id}
+                            />
+                          )}
+                        </Draggable>
+                      );
+                    })}
                   {provided.placeholder}
                 </div>
               )}
@@ -106,6 +121,8 @@ const TodoContainerList = () => {
         <BottomList />
       </div>
       <p className=" josefin--700">Drag and drop to reorder list</p>
+      <p className=" josefin--700">LISTADO TAREAS: {idListFirebase}</p>
+      <p className=" josefin--700"> USUARIO: {idUserGoogle}</p>
     </div>
   );
 };

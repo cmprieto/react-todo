@@ -1,4 +1,4 @@
-import {  useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useUserContext } from "../providers/UserProvider";
 
 const NewTodo = () => {
@@ -6,9 +6,9 @@ const NewTodo = () => {
     useUserContext();
   const newToDoText = useRef(null);
 
-  useEffect(() => {
+/* useEffect(() => {
     newToDoText.current.focus();
-  }, [todoList]);
+  }, []);  */
 
   const actualizarId = () => {
     setNumberId((prevState) => {
@@ -17,21 +17,22 @@ const NewTodo = () => {
     });
   };
 
+  //AÑADIR TASK A CONTEXT Y SUBIR A FIREBASE
+
   const handleNewTodo = (e) => {
+    e.preventDefault();
     const newTask = newToDoText.current.value;
-    console.log('numberId',numberId);
+    console.log("newTask", newTask);
+    console.log("numberId", numberId);
+    const nuevaTarea = { task: newTask, completed: false, id: numberId };
     numberId >= 0 &&
       newTask &&
       setTodoList((prevState) => {
-        const newState = [
-          ...todoList,
-          { task: newTask, completed: false, id: numberId },
-        ];
+        const newState = [...todoList, nuevaTarea];
         return newState;
       });
 
     //  (numberId >= 0 && newTask )&& updateItem(idListFirebase,{ ...todoList, task: newTask, completed: false, id: numberId })
-    e.preventDefault();
     actualizarId();
     subiraFirebase();
     newToDoText.current.value = ""; //BORRA FORMULARIO AL ENTRAR VALOR

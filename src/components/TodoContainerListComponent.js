@@ -7,7 +7,7 @@ const TodoContainerListComponent = (
   { itemtodo, draggableProps, dragHandleProps },
   ref
 ) => {
-  const { handleCompleted, handleDelete ,todoList,todoActivedList,todoCompletedList,subiraFirebase} = useUserContext();
+  const { handleCompleted, handleDelete ,todoList,todoActivedList,todoCompletedList} = useUserContext();
 
   /*   const handleChecked = (e) => { */
   // console.log("checked", e.target.checked);
@@ -15,9 +15,9 @@ const TodoContainerListComponent = (
     setIsChecked(e.target.checked);
   }; */
 
-  useEffect(() => {
+/*   useEffect(() => {
    // subiraFirebase();
-  }, [todoList,todoActivedList,todoCompletedList]);
+  }, [todoList,todoActivedList,todoCompletedList]); */
 
   return (
     <div ref={ref} {...draggableProps} {...dragHandleProps}  className="todocomponentcontainer">

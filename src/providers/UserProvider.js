@@ -1,14 +1,20 @@
 import { createContext, useState, useContext } from "react";
-import { serverTimestamp, collection, addDoc } from "firebase/firestore";
+import {
+  serverTimestamp,
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../app/firebase";
 import { updateItem, getToDoListById } from "../app/api";
+import { createTodoUsers } from "../app/apiFirebaseUsers";
 
 const AppContext = createContext();
 export const useUserContext = () => useContext(AppContext);
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState("Rafa");
-
   const [todoList, setTodoList] = useState([]);
   const [todoActivedList, setTodoActivedList] = useState([]);
   const [todoCompletedList, setTodoCompletedList] = useState([]);
@@ -16,6 +22,9 @@ const UserProvider = ({ children }) => {
   const [idListFirebase, setIdListFirebase] = useState("");
   const [listsFirebase, setListsFirebase] = useState([]);
   const [numberId, setNumberId] = useState(0);
+  const [idUserGoogle, setIdUserGoogle] = useState("");
+  const [userHasListsFirebase, setUserHasListsFirebase] = useState([]);
+  
   //METODOS
 
   //CAMBIAR ESTADOS CUANDO TAREA COMPLETED(checked) O unchecked
@@ -75,39 +84,62 @@ const UserProvider = ({ children }) => {
       });
     }
   };
-// FIREBASE
+  // FIREBASE
 
   //METODO COSECHA PROPIA. RECIBE DATOS FORMULARIO Y LOS LLEVA A BBDD
 
   const creaListaFirebase = () => async () => {
     const Listas = { todoList, todoActivedList, todoCompletedList }; //PARA QUE ME CREE LAS 3 LISTAS, 1 OBJ DE 3 PROPIEDADES
     // createTodo(Listas);
-    const colRef = collection(db, "todo");
-    const data = await addDoc(colRef, Listas).then((res) => alert(res.id));
+    /*  const colRef = collection(db, "todo");
+    const data = await addDoc(colRef, Listas).then((res) => alert(res.id)); */
+    try {
+      const colRef = collection(db, "todo");
+      const data = await addDoc(colRef, Listas);
+      const id = data.id;
+      // Actualiza el documento con el ID obtenido MODICANDO updateItem ya que añadimos ID y no los valores de las listas
+      await updateDoc(doc(colRef, id), { idListFirebase: id });
+      // addDoc -> ID DE PEDIDO
+      return data.id;
+    } catch (error) {
+      console.error("Error creating todo:", error);
+      throw error;
+    }
   };
 
   const subiraFirebase = () => {
+    console.log("idListFirebase", idListFirebase);
+
     const Listasw_ID = {
       todoList,
       todoActivedList,
       todoCompletedList,
       idListFirebase,
     };
-    updateItem(idListFirebase, Listasw_ID);   //actualizo valor de las 3 listas con id del doc
+    console.log("Listasw_ID", Listasw_ID);
+    alert("subirafirebase");
+    updateItem(idListFirebase, Listasw_ID); //actualizo valor de las 3 listas con id del doc
   };
 
-  const leerFirebase = async (idListFirebase) => {
+  const leerFirebase = async (param) => {
+    console.log("param", param);
+    alert("he pasado param a metodo para descargar datos");
     try {
-      const valores = await getToDoListById(idListFirebase);
-      console.log("valores", valores);
-      setListsFirebase(valores); //FORZAR LISTA DE TASK SEA LA DE FIREBASE
-      setTodoList((prevState) => {
-        const newState = valores.todoList;
-                                  // Hacer algo con el nuevo estado aquí si es necesario
-        MaxValueId(newState);     //reviso valor máximo del id del array para q las nuevas task el id sea mayor
-        console.log("New State:", newState);
-        return newState;
-      });
+      alert("VOY A LEER DATOS EN FIREBASE DE ID GUARDADA EN USERS");
+      const valores = await getToDoListById(param);
+      console.log("valores obtenidos de Firebase", valores);
+      valores && setListsFirebase(valores); //FORZAR LISTA DE TASK SEA LA DE FIREBASE
+      valores &&
+        setTodoList((prevState) => {
+          const newState = valores.todoList;
+          // Hacer algo con el nuevo estado aquí si es necesario
+          MaxValueId(newState); //reviso valor máximo del id del array para q las nuevas task el id sea mayor
+          console.log(
+            "Valor maximo indice array guardado en Firebase:",
+            newState
+          );
+          return newState;
+        });
     } catch (error) {
       console.log("Error fetching todo list:", error);
     }
@@ -115,13 +147,43 @@ const UserProvider = ({ children }) => {
 
   const MaxValueId = (newState) => {
     let maxId = 0;
-    //  alert("maximusssssssssssss"); //BUSCAR VALOR MAX ID EXISTENTE EN FIREBASE
-    newState &&
-      (maxId = newState.reduce((max, item) => Math.max(max, item.id),newState[0].id));
+    alert("maximusssssssssssss"); //BUSCAR VALOR MAX ID EXISTENTE EN FIREBASE
+    newState.length > 0 &&
+      (maxId = newState.reduce(
+        (max, item) => Math.max(max, item.id),
+        newState[0].id
+      ));
     console.log("el id max es", maxId);
     setNumberId(maxId + 1); //ACTUALIZAR EL VALOR MAXIMO
   };
+  //________________________________________________________________________
+  /* FIREBASE USERS GOOGLE */
 
+  const creaListaFirebaseGoogle = async () => {
+    try {
+      alert("aaaaaaaaaaaaaaaaa");
+      const usuarios = await { idUserGoogle, idListFirebase }; //PARA QUE ME CREE LoS 2 IDENTIFICADORES(LISTA ID Y USER GOOGLE), 1 OBJ DE 2 PROPIEDADES
+      createTodoUsers(usuarios); //AÑADO ID DOCUMENTO DE BD AL DOC
+    } catch (error) {
+      console.log("Error fetching todo list:", error);
+    }
+  };
+
+  const leerFirebaseGoogleusers = async (idUserFirebase) => {
+    try {
+      const valoresUsers = await getToDoListById(idUserFirebase);
+      console.log("valores", valoresUsers);
+      //??   setUsersListsFirebase(valoresUsers); //FORZAR LISTA DE TASK SEA LA DE FIREBASE
+      /*       setTodoList((prevState) => {
+        const newState = valoresUsers.todoList;
+        // Hacer algo con el nuevo estado aquí si es necesario
+
+        return newState;
+      }); */
+    } catch (error) {
+      console.log("Error fetching todo list:", error);
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -147,9 +209,15 @@ const UserProvider = ({ children }) => {
         creaListaFirebase,
         subiraFirebase,
         leerFirebase,
+        listsFirebase,
         setListsFirebase,
         numberId,
         setNumberId,
+        idUserGoogle,
+        setIdUserGoogle,
+        creaListaFirebaseGoogle,
+        userHasListsFirebase,
+        setUserHasListsFirebase,
       }}
     >
       {children}

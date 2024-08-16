@@ -10,19 +10,20 @@ const BottomList = () => {
     getNumberItemsCompleted,
     todoList,
     todoActivedList,
-    subiraFirebase,
+    idUserGoogle,
     idListFirebase,
+    subiraFirebase,
   } = useUserContext();
   let itemleft = 0;
 
   const handleItemLeft = () => {
     return (itemleft = todoActivedList.length);
   };
+
   useEffect(() => {
-    //EVITAMOS BUCLE Y NECESITAMOS ACTIVAR LA FUNCION PARA SACAR VALOR DE ITEMS PDTES
-    //   handleActive();  ->>>no sale items pdtes si desactivamos
-    getNumberItemsCompleted();
-    idListFirebase && subiraFirebase();
+    //ACTIVA LA FUNCION PARA SACAR VALOR DE ITEMS PDTES
+    todoList && getNumberItemsCompleted();
+    idUserGoogle && idListFirebase && subiraFirebase();
   }, [todoList]);
 
   return (
