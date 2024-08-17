@@ -14,6 +14,7 @@ const TodoContainerList = () => {
     idListFirebase,
     idUserGoogle,
     leerFirebase,
+    user,
   } = useUserContext();
 
   const selectedList = ["todoList", "todoActivedList", "todoCompletedList"];
@@ -76,7 +77,7 @@ const TodoContainerList = () => {
   useEffect(() => {
     //LEER VALORES EN FIREBASE
     alert("LEER VALORES EN FIREBASE si existe idListFirebase");
-    idListFirebase && leerFirebase(idListFirebase);
+    user && idListFirebase && leerFirebase(idListFirebase);
     /*  idListFirebase && idUserGoogle&&userHasListsFirebase.length===0 //ME REPITE Y X2 PQ ARRAY NO UPDATED
       ? creaListaFirebaseGoogle()
       : alert("faltan datos para asociar id de google a lista en FB");

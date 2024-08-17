@@ -49,7 +49,7 @@ const UserProvider = ({ children }) => {
     const newTodoList = todoList.filter((item) => item.id !== id);
     console.log("list", newTodoList);
     setTodoList(newTodoList);
-    subiraFirebase();
+    user&&subiraFirebase();
     return null;
   };
   // MOSTRAR ACTIVAS
@@ -88,7 +88,7 @@ const UserProvider = ({ children }) => {
 
   //METODO COSECHA PROPIA. RECIBE DATOS FORMULARIO Y LOS LLEVA A BBDD
 
-  const creaListaFirebase = () => async () => {
+  const creaListaFirebase= async () => {
     const Listas = { todoList, todoActivedList, todoCompletedList }; //PARA QUE ME CREE LAS 3 LISTAS, 1 OBJ DE 3 PROPIEDADES
     // createTodo(Listas);
     /*  const colRef = collection(db, "todo");

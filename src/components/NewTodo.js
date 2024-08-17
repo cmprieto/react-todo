@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { useUserContext } from "../providers/UserProvider";
 
 const NewTodo = () => {
-  const { todoList, setTodoList, subiraFirebase, numberId, setNumberId } =
+  const { todoList, setTodoList, subiraFirebase, numberId, setNumberId,user } =
     useUserContext();
   const newToDoText = useRef(null);
 
@@ -34,7 +34,7 @@ const NewTodo = () => {
 
     //  (numberId >= 0 && newTask )&& updateItem(idListFirebase,{ ...todoList, task: newTask, completed: false, id: numberId })
     actualizarId();
-    subiraFirebase();
+    user&&subiraFirebase();
     newToDoText.current.value = ""; //BORRA FORMULARIO AL ENTRAR VALOR
   };
 

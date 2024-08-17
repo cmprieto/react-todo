@@ -2,12 +2,13 @@ import { auth } from "../app/firebase";
 import { signInWithGoogle } from "./signInWithGoogle";
 import { useUserContext } from "../providers/UserProvider";
 import { signOut } from "firebase/auth";
-import { useEffect } from "react";
-
+import { Fragment } from "react";
+import exit from "../assets/img/exit-regular-48.png";
+import signin from "../assets/img/web_light_sq_SI@2x.png";
 
 const Login = () => {
-  const { user } = useUserContext();
 
+  const { user } = useUserContext();
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -19,17 +20,22 @@ const Login = () => {
   };
 
   return (
-    <div>
+
+      <Fragment>
       {!user ? (
-        <button onClick={() => signInWithGoogle()}>Log In</button>
+        <img src={signin}  onClick={() => signInWithGoogle()} className="loginContainer--iconGoogle" alt="icongoogle"/>
+       /*  <button onClick={() => signInWithGoogle()} className="loginContainer--button">LogIn with Google</button> */
       ) : (
-        <div>
-          <button onClick={handleLogout}>Cerrar Sesión</button>
-          <p>{user.displayName}</p>
-          <img src={user.photoURL} alt="profilepicture" />
+      <Fragment>
+        <div className="loginContainer--user">
+          <p className="josefin--700">Hola {user.displayName}!</p>
+          <img src={exit} className="loginContainer--user--icon--exit" onClick={handleLogout} alt="iconexit" />
+          <img src={user.photoURL} className="loginContainer--user--photoURL" alt="profilepicture" />   
         </div>
+     </Fragment>
       )}
-    </div>
+      </Fragment>
+
   );
 };
 

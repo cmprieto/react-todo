@@ -13,6 +13,7 @@ const BottomList = () => {
     idUserGoogle,
     idListFirebase,
     subiraFirebase,
+    user,
   } = useUserContext();
   let itemleft = 0;
 
@@ -23,7 +24,7 @@ const BottomList = () => {
   useEffect(() => {
     //ACTIVA LA FUNCION PARA SACAR VALOR DE ITEMS PDTES
     todoList && getNumberItemsCompleted();
-    idUserGoogle && idListFirebase && subiraFirebase();
+    user && idUserGoogle && idListFirebase && subiraFirebase();
   }, [todoList]);
 
   return (

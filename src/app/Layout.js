@@ -7,7 +7,6 @@ const Layout = () => {
   // const [theme] = useLocalStorage("theme","");
   return (
     <Fragment>
-      {" "}
       {/* /* className={`container${theme}`} >*/}
       <Outlet />
     </Fragment>

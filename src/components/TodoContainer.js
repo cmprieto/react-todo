@@ -3,14 +3,12 @@ import NewTodo from "./NewTodo";
 import Footer from "./Footer";
 import { useUserContext } from "../providers/UserProvider";
 import Login from "./Login";
-import { useEffect } from "react";
 import { createTodo } from "../app/api";
+import UserControl from "./UserControl";
 
 const TodoContainer = () => {
   const {
-    leerFirebase,
     setIdListFirebase,
-    idListFirebase,
     todoList,
     todoActivedList,
     todoCompletedList,
@@ -55,9 +53,10 @@ const TodoContainer = () => {
         <h1 className="josefin--700">To Do List</h1>
         {/*        <button onClick={createUser}>Recuperar UserList</button> */}
         {/*  //DA ERROR */}
-        <button onClick={handleAnonimUser}>Usuario anonimo</button>
-        <button onClick={handleDeleteTasks}>Borrar tareas</button>
-        <Login />
+  {/*       <button onClick={handleAnonimUser}>Usuario anonimo</button>
+        <button onClick={handleDeleteTasks}>Borrar tareas</button> */}
+        <UserControl/>
+      {/*   <Login /> */}
         {/* {!user ? <Login /> : <div><p>{user.displayName}</p></div>} */}
       </div>
       <NewTodo />

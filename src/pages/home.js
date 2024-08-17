@@ -1,11 +1,11 @@
-import { Fragment } from "react";
-import TodoContainer from "../components/TodoContainer";
-
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
-    <Fragment>
-      <TodoContainer />
-    </Fragment>
+    <div className="home">
+    <Link><h3>Anonimo</h3></Link>
+    <Link><h3>Sign In with Google</h3></Link>
+    {/*   <TodoContainer /> */}
+    </div>
   );
 };
 

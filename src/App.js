@@ -3,7 +3,7 @@ import Router from "./app/Router.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./app/firebase.js";
 import { useUserContext } from "./providers/UserProvider";
-import {getListByUsers, createTodoUsers} from './app/apiFirebaseUsers';
+import { getListByUsers, createTodoUsers } from "./app/apiFirebaseUsers";
 
 const App = () => {
   const {
@@ -12,11 +12,8 @@ const App = () => {
     setIdUserGoogle,
     setUserHasListsFirebase,
     setTodoList,
-    idListFirebase,
     setIdListFirebase,
     creaListaFirebase,
-    creaListaFirebaseGoogle,
-    idUserGoogle,
     setListsFirebase,
     setNumberId,
   } = useUserContext();
@@ -39,21 +36,22 @@ const App = () => {
     }
   }; */
 
-
   const obtenerListadoUserFirebase = async (iden) => {
     try {
       const listadoUsuario = await getListByUsers(iden); //DEVUELVE 1 O + LISTAS DE UN USER DE GOOGLE
       console.log("listado_de_Usuario_de_Google", listadoUsuario);
-      if (listadoUsuario.length == 0) { //GOOGLE USER NUEVO, SIN LISTAS
-        alert("NO TIENES LISTAS para este usuario de Google");
-        creaListaFirebase()().then((result) => { // CREA 1 ID DE LISTA DE TAREAS NUEVAS, TOMA EL VALOR ID DE LAS LISTA DE RESULTADO FUNCION
-        setIdListFirebase(result); //SETEAMOS IDLISTFIREBASE EN CONTEXT
-        const binomio = { "idUserGoogle": iden, "idListFirebase":result };
-        createTodoUsers(binomio);
-        alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES??");
-        console.log("IDLISTFIREBASE A AÑADIR A FIREBASE ", result);
-        });
 
+      if (listadoUsuario.length === 0) {
+        //GOOGLE USER NUEVO, SIN LISTAS
+        alert("NO TIENES LISTAS para este usuario de Google");
+        const newListId = await creaListaFirebase();
+        setIdListFirebase(newListId);
+        //creaListaFirebase()().then((result) => { // CREA 1 ID DE LISTA DE TAREAS NUEVAS, TOMA EL VALOR ID DE LAS LISTA DE RESULTADO FUNCION
+        // setIdListFirebase(result); //SETEAMOS IDLISTFIREBASE EN CONTEXT
+        const binomio = { idUserGoogle: iden, idListFirebase: newListId };
+        await createTodoUsers(binomio);
+        alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES??");
+        console.log("IDLISTFIREBASE A AÑADIR A FIREBASE ", newListId);
       } else {
         alert("TENEMOS LISTA para este usuario de Google");
         const newState = listadoUsuario;
@@ -67,9 +65,7 @@ const App = () => {
       console.error("Error fetching users:", error);
     }
   };
-
-
-
+  /* 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -92,7 +88,7 @@ const App = () => {
         setUserHasListsFirebase([]);
       }
     });
-  }, [user]);
+  }, [user]); */
 
   return (
     <div className="App">
