@@ -1,28 +1,21 @@
 .loginContainer--iconGoogle {
-    height: 35px; transform: scale(1.5);
+    height: 35px;
     cursor: pointer;
     -webkit-box-shadow: 0px 10px 39px 10px rgba(62, 66, 66, 0.22);
     -moz-box-shadow: 0px 10px 39px 10px rgba(62, 66, 66, 0.22);
     box-shadow: 0px 10px 39px 10px rgba(62, 66, 66, 0.22);
 }
-
 .loginContainer--user {
     @include d-flex(center, center);
     width: 100%;
-    @include d-flex(center, center);
-
-
     &>p {
-        color: white;
+        color: $VeryDarkGrayishBlue;
         font-size: 2rem;
     }
-
     &--icon--exit {
         width: 2rem;
         cursor: pointer;
     }
-
-
     &--photoURL {
         border-radius: 10px;
     }

@@ -14,7 +14,7 @@ const AppContext = createContext();
 export const useUserContext = () => useContext(AppContext);
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState("Rafa");
+  const [user, setUser] = useState(null);
   const [todoList, setTodoList] = useState([]);
   const [todoActivedList, setTodoActivedList] = useState([]);
   const [todoCompletedList, setTodoCompletedList] = useState([]);

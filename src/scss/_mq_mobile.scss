@@ -1,17 +1,39 @@
 @media only screen and (max-width: 600px) {
     .App {
-        background-image: url('../assets/img/bg-mobile-light.jpg');
+        /* background-image: url('../assets/img/bg-mobile-light.jpg'); */
+        background-image: url('../assets/img/montana_615.jpg');
         background-size: contain;
-
+        width: 100vw;
     }
 
     .todocontainer {
         width: 100%;
-        grid-template-rows: 150px 0.1fr 2fr 0.1fr;
+        grid-template-rows: 250px 0.1fr 2fr 0.2fr;
+
+        &--header {
+            width: 100%;
+            margin-top: 0px;
+        }
 
         &--h1 {
             width: 90%;
         }
+    }
+
+    .loginContainer--user {
+        flex-direction: column-reverse;
+
+        &>p {
+            color: $VeryDarkGrayishBlue;
+        }
+
+        &--icon--exit {
+            width: 1.5rem;
+        }
+    }
+
+    .usercontrolContainer {
+        width: 100%;
     }
 
     .cont {
@@ -85,7 +107,6 @@
             }
         }
     }
-
 
 
 

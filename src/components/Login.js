@@ -7,7 +7,6 @@ import exit from "../assets/img/exit-regular-48.png";
 import signin from "../assets/img/web_light_sq_SI@2x.png";
 
 const Login = () => {
-
   const { user } = useUserContext();
   const handleLogout = () => {
     signOut(auth)
@@ -20,22 +19,33 @@ const Login = () => {
   };
 
   return (
-
-      <Fragment>
+    <Fragment>
       {!user ? (
-        <img src={signin}  onClick={() => signInWithGoogle()} className="loginContainer--iconGoogle" alt="icongoogle"/>
-       /*  <button onClick={() => signInWithGoogle()} className="loginContainer--button">LogIn with Google</button> */
+        <img
+          src={signin}
+          onClick={() => signInWithGoogle()}
+          className="loginContainer--iconGoogle"
+          alt="icongoogle"
+        />
       ) : (
-      <Fragment>
-        <div className="loginContainer--user">
-          <p className="josefin--700">Hola {user.displayName}!</p>
-          <img src={exit} className="loginContainer--user--icon--exit" onClick={handleLogout} alt="iconexit" />
-          <img src={user.photoURL} className="loginContainer--user--photoURL" alt="profilepicture" />   
-        </div>
-     </Fragment>
+        <Fragment>
+          <div className="loginContainer--user">
+            <p className="josefin--700">Hola {user.displayName}!</p>
+            <img
+              src={exit}
+              className="loginContainer--user--icon--exit"
+              onClick={handleLogout}
+              alt="iconexit"
+            />
+            <img
+              src={user.photoURL}
+              className="loginContainer--user--photoURL"
+              alt="profilepicture"
+            />
+          </div>
+        </Fragment>
       )}
-      </Fragment>
-
+    </Fragment>
   );
 };
 

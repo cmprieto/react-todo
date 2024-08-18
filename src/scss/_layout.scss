@@ -1,10 +1,14 @@
 .App {
-    background-image: url('../assets/img/bg-desktop-light.jpg');
+   /*  background-image: url('../assets/img/bg-desktop-light.jpg');
+    */ 
+    background-image: url('../assets/img/montana_1000.jpg');
+   
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
     height: auto;
-    background-color: $VeryLightGray;
+   /*  background-color: $VeryLightGray; */
+   background-color: $VeryDarkBlue;
 }
 
 .todocontainer {
