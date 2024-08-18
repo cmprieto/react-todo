@@ -4,24 +4,32 @@
     @include flex-center;
     flex-direction: column;
 
-    &>p {
+    &--drag {
         font-size: 0.9rem;
         color: $DarkGrayishBlue;
-        margin-top: 4rem;
+        margin: 4rem;
+    }
+
+    &--userInfo {
+        padding: 1rem;
+        background-color: white;
+        border-radius: 10px;
+
+        &>p {
+            font-size: 0.9rem;
+            color: $DarkGrayishBlue;
+            line-height: 2;
+        }
     }
 }
 
 
 .todolistcontainer {
-    /*  grid-area: main;
-    align-self: flex-start;
-    @include flex-center;
-    flex-direction: column; */
     min-width: 540px;
     margin-top: 1rem;
-    //  border: 2px solid #993636;
+
     border-radius: 5px;
-    /* https://smoothshadows.com/#djEsMSw1LDAuMDgsMjQsMzIsMCwjMDMwNzEyLCNmM2Y0ZjYsI2ZmZmZmZiwy */
+
     box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
         0px 5px 4px rgba(3, 7, 18, 0.03),
         0px 12px 9px rgba(3, 7, 18, 0.05),

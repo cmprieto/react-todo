@@ -9,7 +9,6 @@
     background-color: white;
 
     &--largeradio {
-        // transform: scale(1.7);
         appearance: none;
         font: inherit;
         width: 1.15em;
@@ -33,7 +32,6 @@
         }
 
         &:checked {
-
             //   background: url("../assets/img/icon-check.svg") no-repeat 0 0;
             &::before {
                 transform: scale(1);
@@ -66,7 +64,6 @@
 
         .todocomponentcontainer--cross {
             visibility: visible;
-         
             cursor: pointer;
         }
     }
@@ -87,7 +84,6 @@
 
     &--form {
         width: 100%;
-
     }
 
     &--input {
@@ -96,13 +92,6 @@
         width: 100%;
         border: none;
         border-radius: 5px;
-
-        /*   box-shadow: 1px 1px 1px rgba(3, 7, 18, 0.02),
-            0px 5px 4px rgba(3, 7, 18, 0.03),
-            0px 12px 9px rgba(3, 7, 18, 0.05),
-            0px 20px 15px rgba(3, 7, 18, 0.06),
-            0px 32px 24px rgba(3, 7, 18, 0.08);
- */
         &:focus,
         &:focus-visible {
             border: 1px solid $VeryLightGrayishBlue;

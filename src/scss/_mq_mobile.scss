@@ -20,20 +20,25 @@
         }
     }
 
-    .loginContainer--user {
-        flex-direction: column-reverse;
+    .loginContainer {
+        &--iconGoogle {
 
-        &>p {
-            color: $VeryDarkGrayishBlue;
+            @include flex-center;
         }
 
-        &--icon--exit {
-            width: 1.5rem;
+        &--user {
+            flex-direction: column-reverse;
+
+            &--icon--exit {
+                width: 1.5rem;
+                margin: 0.5rem;
+            }
         }
     }
 
     .usercontrolContainer {
         width: 100%;
+
     }
 
     .cont {

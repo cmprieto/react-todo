@@ -9,7 +9,8 @@
     @include d-flex(center, center);
     width: 100%;
     &>p {
-        color: $VeryDarkGrayishBlue;
+       /*  color: $VeryDarkGrayishBlue; */
+        color: $VeryLightGray;
         font-size: 2rem;
     }
     &--icon--exit {

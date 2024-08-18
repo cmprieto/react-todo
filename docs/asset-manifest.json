@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-todo/static/css/main.200c81db.css",
-    "main.js": "/react-todo/static/js/main.74d76304.js",
+    "main.css": "/react-todo/static/css/main.9088d6c2.css",
+    "main.js": "/react-todo/static/js/main.f9755e2e.js",
     "static/media/montana_1000.jpg": "/react-todo/static/media/montana_1000.9d74593c010caabad707.jpg",
     "static/media/montana_615.jpg": "/react-todo/static/media/montana_615.3408645ca2ac9bcb080c.jpg",
     "index.html": "/react-todo/index.html",
     "static/media/icon-cross.svg": "/react-todo/static/media/icon-cross.6ee81d30b75cab19d6f7314624fcc4d6.svg",
-    "main.200c81db.css.map": "/react-todo/static/css/main.200c81db.css.map",
-    "main.74d76304.js.map": "/react-todo/static/js/main.74d76304.js.map"
+    "main.9088d6c2.css.map": "/react-todo/static/css/main.9088d6c2.css.map",
+    "main.f9755e2e.js.map": "/react-todo/static/js/main.f9755e2e.js.map"
   },
   "entrypoints": [
-    "static/css/main.200c81db.css",
-    "static/js/main.74d76304.js"
+    "static/css/main.9088d6c2.css",
+    "static/js/main.f9755e2e.js"
   ]
 }

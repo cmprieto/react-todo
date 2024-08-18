@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import Home from "../pages/Home";
+
 import TodoContainer from "../components/TodoContainer";
 
 /* import ProtectedRoute from "./ProtectedRoute"; */

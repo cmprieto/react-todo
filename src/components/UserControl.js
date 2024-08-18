@@ -31,8 +31,6 @@ const UserControl = () => {
         const newListId = await creaListaFirebase();
         console.log("setIdListFirebase", newListId);
         setIdListFirebase(newListId);
-        //   creaListaFirebase()().then((result) => { // CREA 1 ID DE LISTA DE TAREAS NUEVAS, TOMA EL VALOR ID DE LAS LISTA DE RESULTADO FUNCION
-        //      setIdListFirebase(result); //SETEAMOS IDLISTFIREBASE EN CONTEXT
         const binomio = { idUserGoogle: iden, idListFirebase: newListId };
         const binomioIds = await createTodoUsers(binomio);
         alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES??");
@@ -82,7 +80,7 @@ const UserControl = () => {
   };
   return (
     <div className="usercontrolContainer">
-  {/*     <div className="usercontrolContainer--buttonCont">
+      {/*     <div className="usercontrolContainer--buttonCont">
         {!user && (
           <button
             onClick={handleDeleteTasks}

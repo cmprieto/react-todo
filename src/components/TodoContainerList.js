@@ -26,7 +26,7 @@ const TodoContainerList = () => {
   );
 
   //DEFINE QUE LISTA FILTRADA SE MUESTRA X PANTALLA
-
+  /* const data; */
   const list =
     selectedList[index] === "todoList"
       ? todoList
@@ -74,14 +74,29 @@ const TodoContainerList = () => {
   );
   /* `${selectedList[index]}` */
 
+  const lastRefresh = () => {
+    const lastRefreshAt = user.reloadUserInfo.lastRefreshAt;
+    if (!lastRefreshAt) return null; // or some default value
+
+    const date = new Date(lastRefreshAt);
+    const formattedDate = new Intl.DateTimeFormat("es-ES", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "UTC",
+    }).format(date);
+
+    console.log(formattedDate);
+    return formattedDate;
+  };
+
   useEffect(() => {
     //LEER VALORES EN FIREBASE
-    alert("LEER VALORES EN FIREBASE si existe idListFirebase");
+   // alert("LEER VALORES EN FIREBASE si existe idListFirebase");
     user && idListFirebase && leerFirebase(idListFirebase);
-    /*  idListFirebase && idUserGoogle&&userHasListsFirebase.length===0 //ME REPITE Y X2 PQ ARRAY NO UPDATED
-      ? creaListaFirebaseGoogle()
-      : alert("faltan datos para asociar id de google a lista en FB");
-      alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES??"); */
   }, [idListFirebase]);
 
   return (
@@ -99,7 +114,6 @@ const TodoContainerList = () => {
                           index={index}
                           draggableId={todoitem.id.toString()}
                           key={todoitem.id}
-                          /* className="todocomponentcontainer" */
                         >
                           {(provided) => (
                             <TodoContainerListComponent
@@ -121,9 +135,19 @@ const TodoContainerList = () => {
         </DragDropContext>
         <BottomList />
       </div>
-      <p className=" josefin--700">Drag and drop to reorder list</p>
-      <p className=" josefin--700">LISTADO TAREAS: {idListFirebase}</p>
-      <p className=" josefin--700"> USUARIO: {idUserGoogle}</p>
+      <p className=" josefin--700 cont--drag">Drag and drop to reorder list</p>
+
+      {user && (
+        <div className="cont--userInfo">
+          <p className=" josefin--700">email: {user.email}</p>
+          <p className=" josefin--700">
+            created at: {user.metadata.creationTime}
+          </p>
+          <p className=" josefin--700">Last Refresh At: {lastRefresh()}</p>
+          <p className=" josefin--700">ID LISTADO TAREAS: {idListFirebase}</p>
+          <p className=" josefin--700">ID USUARIO: {idUserGoogle}</p>
+        </div>
+      )}
     </div>
   );
 };

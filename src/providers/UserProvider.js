@@ -161,7 +161,7 @@ const UserProvider = ({ children }) => {
 
   const creaListaFirebaseGoogle = async () => {
     try {
-      alert("aaaaaaaaaaaaaaaaa");
+     // alert("aaaaaaaaaaaaaaaaa");
       const usuarios = await { idUserGoogle, idListFirebase }; //PARA QUE ME CREE LoS 2 IDENTIFICADORES(LISTA ID Y USER GOOGLE), 1 OBJ DE 2 PROPIEDADES
       createTodoUsers(usuarios); //AÑADO ID DOCUMENTO DE BD AL DOC
     } catch (error) {
@@ -173,13 +173,6 @@ const UserProvider = ({ children }) => {
     try {
       const valoresUsers = await getToDoListById(idUserFirebase);
       console.log("valores", valoresUsers);
-      //??   setUsersListsFirebase(valoresUsers); //FORZAR LISTA DE TASK SEA LA DE FIREBASE
-      /*       setTodoList((prevState) => {
-        const newState = valoresUsers.todoList;
-        // Hacer algo con el nuevo estado aquí si es necesario
-
-        return newState;
-      }); */
     } catch (error) {
       console.log("Error fetching todo list:", error);
     }

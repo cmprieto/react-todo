@@ -1,4 +1,4 @@
-import {  forwardRef, useEffect} from 'react';
+import {  forwardRef} from 'react';
 import iconcross from "../assets/img/icon-cross.svg";
 import { useUserContext } from "../providers/UserProvider";
 
@@ -7,7 +7,7 @@ const TodoContainerListComponent = (
   { itemtodo, draggableProps, dragHandleProps },
   ref
 ) => {
-  const { handleCompleted, handleDelete ,todoList,todoActivedList,todoCompletedList} = useUserContext();
+  const { handleCompleted, handleDelete} = useUserContext();
 
   /*   const handleChecked = (e) => { */
   // console.log("checked", e.target.checked);
@@ -15,9 +15,6 @@ const TodoContainerListComponent = (
     setIsChecked(e.target.checked);
   }; */
 
-/*   useEffect(() => {
-   // subiraFirebase();
-  }, [todoList,todoActivedList,todoCompletedList]); */
 
   return (
     <div ref={ref} {...draggableProps} {...dragHandleProps}  className="todocomponentcontainer">
