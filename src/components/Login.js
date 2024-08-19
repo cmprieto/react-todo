@@ -1,5 +1,5 @@
 import { auth } from "../app/firebase";
-import { signInWithGoogle } from "./signInWithGoogle";
+import { signInWithGoogle } from "../app/signInWithGoogle";
 import { useUserContext } from "../providers/UserProvider";
 import { signOut } from "firebase/auth";
 import { Fragment } from "react";

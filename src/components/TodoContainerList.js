@@ -72,8 +72,8 @@ const TodoContainerList = () => {
     "corresponde a list q se muestra x pantalla, todolist, completed o active: formato array de objetos:",
     list
   );
-  /* `${selectedList[index]}` */
 
+//TRADUCIR FORMATO DATA DE SERVIDOR
   const lastRefresh = () => {
     const lastRefreshAt = user.reloadUserInfo.lastRefreshAt;
     if (!lastRefreshAt) return null; // or some default value
@@ -95,7 +95,6 @@ const TodoContainerList = () => {
 
   useEffect(() => {
     //LEER VALORES EN FIREBASE
-   // alert("LEER VALORES EN FIREBASE si existe idListFirebase");
     user && idListFirebase && leerFirebase(idListFirebase);
   }, [idListFirebase]);
 
@@ -143,9 +142,9 @@ const TodoContainerList = () => {
           <p className=" josefin--700">
             created at: {user.metadata.creationTime}
           </p>
-          <p className=" josefin--700">Last Refresh At: {lastRefresh()}</p>
-          <p className=" josefin--700">ID LISTADO TAREAS: {idListFirebase}</p>
-          <p className=" josefin--700">ID USUARIO: {idUserGoogle}</p>
+          <p className=" josefin--700">last refresh At: {lastRefresh()}</p>
+          <p className=" josefin--700">id task list: {idListFirebase}</p>
+          <p className=" josefin--700">id user: {idUserGoogle}</p>
         </div>
       )}
     </div>

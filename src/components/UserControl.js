@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../app/firebase.js";
@@ -33,11 +32,11 @@ const UserControl = () => {
         setIdListFirebase(newListId);
         const binomio = { idUserGoogle: iden, idListFirebase: newListId };
         const binomioIds = await createTodoUsers(binomio);
-        alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES??");
+        // alert("HEMOS CREADO NUEVA LISTA PARA UN USER SIN LISTAS EXISTENTES");
         console.log("binomioIds A AÑADIR A FIREBASE ", binomioIds);
         return newListId;
       } else {
-        alert("TENEMOS LISTA para este usuario de Google");
+        // alert("TENEMOS LISTA para este usuario de Google");
         const newState = listadoUsuario;
         const firstListId = newState[0]?.idListFirebase; // use optional chaining to avoid null/undefined errors
         setUserHasListsFirebase(newState);
@@ -78,6 +77,7 @@ const UserControl = () => {
     setTodoCompletedList([]);
     setTodoActivedList([]);
   };
+  
   return (
     <div className="usercontrolContainer">
       {/*     <div className="usercontrolContainer--buttonCont">

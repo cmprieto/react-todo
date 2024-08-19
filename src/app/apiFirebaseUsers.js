@@ -3,11 +3,8 @@ import {
   getDocs,
   query,
   doc,
-  getDoc,
   addDoc,
-  deleteDoc,
   updateDoc,
-  setDoc,
   where,
 } from "firebase/firestore";
 import { db } from "./firebase";
@@ -15,13 +12,13 @@ import { db } from "./firebase";
 // CREATE
 export const createTodoUsers = async (obj) => {
   try {
-    alert("bbbbbbbbbbbbbbbbb");
+   // alert("bbbbbbbbbbbbbbbbb");
     const colRef = collection(db, "users");
     const data = await addDoc(colRef, obj);
     const id = data.id;
     // Actualiza el documento con el ID obtenido MODICANDO updateItem ya que añadimos ID y no los valores de las listas
     await updateDoc(doc(colRef, id), { idUserFirebase: id }); //AÑADIMOS NUMERO DOCUMENTO AL DOCX
-    // addDoc -> ID DE PEDIDO
+    // addDoc -> ID DE user
     return data.id;
   } catch (error) {
     console.error("Error creating todo:", error);
@@ -44,11 +41,7 @@ export const getItemsUsers = async () => {
 
 // READ WITH WHERE
 // Tener en cuenta que el tipo de dato de la condición debe coincidir con el tipo de dato que hay en Firebase o no obtendré un dato de respuesta
-export const getItemsByConditionUsers = async (value) => {
-  const colRef = collection(db, "users");
-  const result = await getDocs(query(colRef, where("category", "==", value)));
-  return getArrayFromCollection(result);
-};
+
 export const getItemsByIdUsers = async (value) => {
   const colRef = collection(db, "users");
   const result = await getDocs(query(colRef, where("id", "==", value)));
@@ -62,28 +55,6 @@ export const getListByUsers = async (id) => {
   return getArrayFromCollection(result);
 };
 
-
-export const getToDoListByIdUsers = async (id) => {
-  // OBTIENE CESTA COMPRA POR ID DE COLECCCION
-  const colRef = collection(db, "users");
-  const IDStr = id.toString();
-  const result = await getDoc(doc(colRef, IDStr));
-  return result.data();
-};
-
-/*
-    
-    export const getItemById = async (id) => {
-      const colRef = collection(db, "users");
-      const result = await getDoc(doc(colRef, id));
-      return result.data();
-    };
-    
-    // DELETE
-    export const deleteItem = async (id) => {
-      const colRef = collection(db, "users");
-      await deleteDoc(doc(colRef, id));
-    };*/
 
 export const getArrayFromCollection = (collection) => {
   return collection.docs.map((doc) => {

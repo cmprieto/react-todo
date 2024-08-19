@@ -1,19 +1,9 @@
 import TodoContainerList from "./TodoContainerList";
 import NewTodo from "./NewTodo";
 import Footer from "./Footer";
-import { useUserContext } from "../providers/UserProvider";
 import UserControl from "./UserControl";
 
 const TodoContainer = () => {
-  const { setTodoActivedList, setTodoCompletedList, setTodoList } =
-    useUserContext();
-
-  const handleDeleteTasks = () => {
-    setTodoList([]);
-    setTodoCompletedList([]);
-    setTodoActivedList([]);
-  };
-
   return (
     <div className="todocontainer">
       <div className="todocontainer--header">

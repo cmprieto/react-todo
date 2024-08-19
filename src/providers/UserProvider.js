@@ -84,22 +84,20 @@ const UserProvider = ({ children }) => {
       });
     }
   };
+
   // FIREBASE
 
   //METODO COSECHA PROPIA. RECIBE DATOS FORMULARIO Y LOS LLEVA A BBDD
 
   const creaListaFirebase= async () => {
     const Listas = { todoList, todoActivedList, todoCompletedList }; //PARA QUE ME CREE LAS 3 LISTAS, 1 OBJ DE 3 PROPIEDADES
-    // createTodo(Listas);
-    /*  const colRef = collection(db, "todo");
-    const data = await addDoc(colRef, Listas).then((res) => alert(res.id)); */
     try {
       const colRef = collection(db, "todo");
       const data = await addDoc(colRef, Listas);
       const id = data.id;
-      // Actualiza el documento con el ID obtenido MODICANDO updateItem ya que añadimos ID y no los valores de las listas
+      // Actualiza el documento con el ID obtenido MODIFICANDO updateItem ya que añadimos ID y no los valores de las listas
       await updateDoc(doc(colRef, id), { idListFirebase: id });
-      // addDoc -> ID DE PEDIDO
+      // addDoc -> ID DE TAREAS
       return data.id;
     } catch (error) {
       console.error("Error creating todo:", error);
@@ -117,15 +115,15 @@ const UserProvider = ({ children }) => {
       idListFirebase,
     };
     console.log("Listasw_ID", Listasw_ID);
-    alert("subirafirebase");
+   // alert("subirafirebase");
     updateItem(idListFirebase, Listasw_ID); //actualizo valor de las 3 listas con id del doc
   };
 
   const leerFirebase = async (param) => {
     console.log("param", param);
-    alert("he pasado param a metodo para descargar datos");
+   // alert("he pasado param a metodo para descargar datos");
     try {
-      alert("VOY A LEER DATOS EN FIREBASE DE ID GUARDADA EN USERS");
+    //  alert("VOY A LEER DATOS EN FIREBASE DE ID GUARDADA EN USERS");
       const valores = await getToDoListById(param);
       console.log("valores obtenidos de Firebase", valores);
       valores && setListsFirebase(valores); //FORZAR LISTA DE TASK SEA LA DE FIREBASE
@@ -147,7 +145,7 @@ const UserProvider = ({ children }) => {
 
   const MaxValueId = (newState) => {
     let maxId = 0;
-    alert("maximusssssssssssss"); //BUSCAR VALOR MAX ID EXISTENTE EN FIREBASE
+  //  alert("maximusssssssssssss"); //BUSCAR VALOR MAX ID EXISTENTE EN FIREBASE
     newState.length > 0 &&
       (maxId = newState.reduce(
         (max, item) => Math.max(max, item.id),
@@ -156,23 +154,15 @@ const UserProvider = ({ children }) => {
     console.log("el id max es", maxId);
     setNumberId(maxId + 1); //ACTUALIZAR EL VALOR MAXIMO
   };
-  //________________________________________________________________________
-  /* FIREBASE USERS GOOGLE */
+
+
+  /* METODOS FIREBASE USERS GOOGLE */
 
   const creaListaFirebaseGoogle = async () => {
     try {
      // alert("aaaaaaaaaaaaaaaaa");
       const usuarios = await { idUserGoogle, idListFirebase }; //PARA QUE ME CREE LoS 2 IDENTIFICADORES(LISTA ID Y USER GOOGLE), 1 OBJ DE 2 PROPIEDADES
       createTodoUsers(usuarios); //AÑADO ID DOCUMENTO DE BD AL DOC
-    } catch (error) {
-      console.log("Error fetching todo list:", error);
-    }
-  };
-
-  const leerFirebaseGoogleusers = async (idUserFirebase) => {
-    try {
-      const valoresUsers = await getToDoListById(idUserFirebase);
-      console.log("valores", valoresUsers);
     } catch (error) {
       console.log("Error fetching todo list:", error);
     }
