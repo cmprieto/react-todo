@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/react-todo/static/css/main.9088d6c2.css",
-    "main.js": "/react-todo/static/js/main.6772e11b.js",
+    "main.js": "/react-todo/static/js/main.522003ac.js",
     "static/media/montana_1000.jpg": "/react-todo/static/media/montana_1000.9d74593c010caabad707.jpg",
     "static/media/montana_615.jpg": "/react-todo/static/media/montana_615.3408645ca2ac9bcb080c.jpg",
     "index.html": "/react-todo/index.html",
     "static/media/icon-cross.svg": "/react-todo/static/media/icon-cross.6ee81d30b75cab19d6f7314624fcc4d6.svg",
     "main.9088d6c2.css.map": "/react-todo/static/css/main.9088d6c2.css.map",
-    "main.6772e11b.js.map": "/react-todo/static/js/main.6772e11b.js.map"
+    "main.522003ac.js.map": "/react-todo/static/js/main.522003ac.js.map"
   },
   "entrypoints": [
     "static/css/main.9088d6c2.css",
-    "static/js/main.6772e11b.js"
+    "static/js/main.522003ac.js"
   ]
 }

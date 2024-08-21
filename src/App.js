@@ -1,13 +1,10 @@
 import React from "react";
-import Router from "./app/Router.js";
-
+import TodoContainer from "./components/TodoContainer";
 const App = () => {
-  
   return (
     <div className="App">
-      <Router />
+      <TodoContainer />
     </div>
   );
 };
-
 export default App;
